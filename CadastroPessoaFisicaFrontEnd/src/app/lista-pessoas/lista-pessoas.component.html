@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">
+      <h2>Olá, {{ username }}!</h2>
+      <button (click)="sair()">Sair</button>
+    </div>
+  
+    <button (click)="redirecionarParaCadastro()">Cadastrar Pessoa Física</button>
+  
+    <div class="lista">
+      <input type="text" [(ngModel)]="termoPesquisa" placeholder="Pesquisar" />
+      
+      <ul>
+        <li *ngFor="let pessoa of pessoas">
+          {{ pessoa.nome }} {{ pessoa.sobrenome }} ({{ pessoa.email }})
+          <button (click)="deletarPessoa(pessoa.id)">Deletar</button>
+        </li>
+      </ul>
+    </div>
+  </div>

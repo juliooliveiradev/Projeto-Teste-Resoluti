@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Login</h2>
+  
+    <div class="form-container">
+      <!-- Formulário de login -->
+      <form (ngSubmit)="loginUsuario(loginForm.value)" #loginForm="ngForm">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" ngModel required>
+        </div>
+  
+        <div class="form-group">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" name="senha" ngModel required>
+        </div>
+  
+        <button type="submit">Login</button>
+      </form>
+  
+      <!-- Mensagem de erro -->
+      <div *ngIf="mensagemErro" class="mensagem-erro">
+        {{ mensagemErro }}
+      </div>
+    </div>
+  
+    <div class="logo-container">
+      <!-- Adicione aqui a imagem do logotipo -->
+      <img src="assets/1631363294588.jpeg" alt="Logotipo">
+    </div>
+  </div>

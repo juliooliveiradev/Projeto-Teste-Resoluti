@@ -1,0 +1,116 @@
+<div>
+    <h2>Cadastrar Pessoa Física</h2>
+  
+    <!-- Dados Pessoais -->
+    <div class="dados-pessoais">
+      <h3>Dados Pessoais</h3>
+      <div class="linha">
+        <div class="coluna">
+          <label>Nome</label>
+          <input type="text" [(ngModel)]="nome" />
+        </div>
+        <div class="coluna">
+          <label>Sobrenome</label>
+          <input type="text" [(ngModel)]="sobrenome" />
+        </div>
+        <div class="coluna">
+          <label>Data de Nascimento</label>
+          <input type="date" [(ngModel)]="dataNascimento" />
+        </div>
+      </div>
+      <div class="linha">
+        <div class="coluna">
+          <label>Nome</label>
+          <input type="text" [(ngModel)]="email" />
+        </div>
+        <div class="coluna">
+          <label>Sobrenome</label>
+          <input type="text" [(ngModel)]="cpf" />
+        </div>
+        <div class="coluna">
+            <label>Sobrenome</label>
+            <input type="text" [(ngModel)]="rg" /> 
+        </div>
+      </div>
+      <!-- Outros campos de Dados Pessoais aqui -->
+    </div>
+  
+    <!-- Endereços -->
+    <div class="enderecos">
+      <h3>Endereços</h3>
+      <div *ngFor="let endereco of enderecos; let i = index" class="linha">
+            <div class="linha">
+                <div class="coluna">
+                <label>Logradouro</label>
+                <input type="text" [(ngModel)]="endereco.logradouro" />
+                </div>
+                <div class="coluna">
+                <label>Número</label>
+                <input type="text" [(ngModel)]="endereco.numero" />
+                </div>
+                <div class="coluna">
+                <label>CEP</label>
+                <input type="text" [(ngModel)]="endereco.cep" />
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna">
+                <label>Logradouro</label>
+                <input type="text" [(ngModel)]="endereco.complemento" />
+                </div>
+                <div class="coluna">
+                <label>Número</label>
+                <input type="text" [(ngModel)]="endereco.cidade" />
+                </div>
+              <div class="coluna">
+                <label>Estado</label>
+                <select [(ngModel)]="endereco.estadoSelecionado">
+                    <option *ngFor="let estado of estadosBrasileiros" [value]="estado">{{ estado }}</option>
+                  </select>
+                </div>
+            </div>
+            
+        
+       
+            <div class="coluna" *ngIf="i === enderecos.length - 1">
+            <button (click)="adicionarEndereco()">Adicionar</button>
+            </div>
+            <div class="coluna" *ngIf="i === enderecos.length - 1 || enderecos.length === 1">
+            <button (click)="removerEndereco(i)">Remover</button>
+            </div>
+        </div>
+      
+    </div>
+  
+    <!-- Contatos -->
+    <div class="contatos">
+      <h3>Contatos</h3>
+      <div *ngFor="let contato of contatos; let i = index" class="linha">
+        <div class="coluna">
+          <label>Nome</label>
+          <input type="text" [(ngModel)]="contato.nome" />
+        </div>
+        <div class="coluna">
+          <label>Contato</label>
+          <input type="text" [(ngModel)]="contato.contato" placeholder="Email/Telefone" />
+        </div>
+        <div class="coluna">
+          <label>Tipo Contato</label>
+          <select [(ngModel)]="contato.tipoContato">
+            <option value="Email">Email</option>
+            <option value="Telefone">Telefone</option>
+          </select>
+        </div>
+        <!-- Outros campos de Contatos aqui -->
+        <div class="coluna" *ngIf="i === contatos.length - 1">
+          <button (click)="adicionarContato()">Adicionar</button>
+        </div>
+        <div class="coluna" *ngIf="i === contatos.length - 1 || contatos.length === 1">
+          <button (click)="removerContato(i)">Remover</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Botão para cadastrar pessoa física -->
+    <button (click)="cadastrarPessoaFisica()">Cadastrar Pessoa Física</button>
+  </div>

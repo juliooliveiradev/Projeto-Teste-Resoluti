@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  sql-server:
+    container_name: sql-server-container
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: SuaSenhaDesejada
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
+    networks:
+      - backend
+
+  backend:
+    image: nome-do-projeto-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - sql-server
+    networks:
+      - backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Server=sql-server;Database=CadastroPessoaFisicaDB;Integrated Security=True;"
+      Jwt:Issuer: "CadastroPessoaFisica"
+      Jwt:Audience: "OutroServico"
+      Jwt:SecretKey: "csH8FdCX1ma71qNdpqgsj7ahTi03CQjB"
+
+networks:
+  backend:
+    driver: bridge
